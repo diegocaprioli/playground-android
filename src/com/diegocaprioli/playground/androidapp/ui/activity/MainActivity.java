@@ -5,17 +5,30 @@ import android.os.Bundle;
 import android.view.Menu;
 
 import com.diegocaprioli.playground.androidapp.R;
+import com.diegocaprioli.playground.androidapp.app.PlayGroundApplication;
 import com.diegocaprioli.playground.androidapp.controller.PlayGroundAPIController;
 
 public class MainActivity extends Activity {
 
+	
+	/**
+	 * Returns the app's PlayGroundAPIController
+	 * @return PlayGroundAPIController
+	 */
+	private PlayGroundAPIController getApiController() {
+		PlayGroundApplication app = (PlayGroundApplication) getApplication();
+		return app.apiController;
+	}
+	
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
         //get the users from the API
-        PlayGroundAPIController.getInstance().refreshUsers();
+        getApiController().refreshUsers();     
+        
         
     }
 
